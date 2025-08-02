@@ -2,18 +2,18 @@ CC = gcc
 CCFLAGS = -g -Wall
 
 SRC = $(wildcard src/*.c)
-OBJ = $(SRC:.c = .o)
+OBJ = $(SRC:.c=.o)
 BIN = bin
 
-all:run
+all:dirs run
 
 dirs:
 	mkdir -p ./$(BIN)
 
 program:$(OBJ)
-	$(CC) -o $(BIN)/program $^
+	$(CC) -o $(BIN)/program $^ $(CCFLAGS)
 
-%.o:%.c %.h
+%.o:%.c
 	$(CC) -o $@ -c $< $(CCFLAGS)
 
 run:program
